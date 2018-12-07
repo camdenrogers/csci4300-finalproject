@@ -69,7 +69,7 @@ Licensing request: All code produced as a result of, and in accordance to, this 
 
 - **(10 points) Event Groups:** When on an event page, a user will be able to register to attend an event by joining or creating a group (around 4-6) of people also attending the event. These groups will be displayed at the bottom of the event page
 
-- **Django (10 pts):** Project is consistent and uses Django throughout (10 pts)
+- **(10 points) Django:** Project is consistent and uses Django throughout
 
 - **(10 points) MySQL Tables (subject to adjustment for functionality purposes)**
   - **(2.5 points) Users**
