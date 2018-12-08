@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UGA Nvite</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	</head>
+	<body>
+		<div class="menu-bar">
+			<div class="center-logo">UGA Nvite</div>
+			<div class="right-menu">Sign Up</div>
+			<div class="right-menu">Login</div>
+		</div>
+		<div class="poll-container">
+    			<h3>Events</h3>
+    			<hr class="header-hr">
+    			{% if latest_event_list %}
+    			        {% for event in latest_event_list %}
+           				 <p><a class="event-link" href="{% url 'events:detail' event.id %}">{{ event.event_title }}</a></p>
+    			        {% endfor %}
+    			{% else %}
+       				<p>No events are available.</p>
+    			{% endif %}
+    		</div>
+		<footer>
+			<p>This website made by Francis Mazzolini, Alex Kimbrell for CSCI 4300.<p>
+		</footer>
+	</body>
+</html>		
