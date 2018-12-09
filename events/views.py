@@ -16,6 +16,12 @@ class IndexView(generic.ListView):
     template_name = 'events/events.html'
     context_object_name = 'latest_event_list'
     def get_queryset(self):
-        """Return the last five published questions (not including those set to be
+        """Return the 15 events (not including those set to be
         published in the future). """
         return Event.objects.filter().order_by('id')[:15]
+
+class DetailView(generic.DetailView):
+    model = Event
+    template_name = 'events/detail.html'
+    def get_queryset(self):
+        return Event.objects.filter()
