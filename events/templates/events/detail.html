@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>UGA Nvite</title>
+                <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+        </head>
+        <body>
+                <div class="menu-bar">
+                        <div>Event List</div>
+			<div class="center-logo">UGA Nvite</div>
+			<div>Logout</div>
+                </div>
+		<div class="poll-container">
+    			<h3>{{ event.event_title }}</h3>
+   			<hr class="header-hr">
+   			{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  			{% csrf_token %}
+    			<p>{{ event.location }}<p>
+			<p>{{ event.date }}</p>
+		<a href="register.html"><button>Register for this event</button></a>
+    		</div>
+    	<hr class="footer-hr">
+	<div>Google Maps Placeholder div</div>
+	<h5>Placeholder group</h5>
+	<ul>
+		<li>user1</li>
+		<li>user2</li>
+		<li>...</li>
+	</ul>
+	<hr class="footer-hr">
+    	<footer>
+        	<p class="footer">This website was written by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.</p>
+    	</footer>
+</body>
+</html>
