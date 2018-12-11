@@ -1,21 +1,42 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		{% load static %}
 		<title>UGA Nvite</title>
-		<link rel="stylesheet" type="text/css" href="static/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="{% static '/stylesheet.css' %}">
 	</head>
 	<body>
 		<div class="menu-bar">
-			<div><div class="center-logo">UGA Nvite</div></div>
-			<div><div class="right-menu">Sign Up</div>
-			<div class="right-menu">Login</div></div>
+			<div class="menu-item"></div>
+			<div class="menu-item">
+				<div class="center-logo">
+					<p><a class="menu-link" href="/final/">UGA Nvite</a></p>
+				</div>
+			</div>
+			<div class="menu-item">
+				<div class="right-container">
+					<div class="right-menu">
+						<a class="menu-link" href="">Sign Up</a>
+					</div>
+					<div class="right-menu">
+						<a class="menu-link" href="">Login</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="welcome">
-			<h1>Welcome to UGA Nvite</h1>
-			<h3>Sign up or log in to connect with new friends.</h3>
+		<div class="middle-center">
+			<div class="welcome">
+				<h1>Welcome to <div class="title-text">UGA Nvite</div></h1>
+				<h3><a href="">Sign up</a> or <a href="">log in</a> to connect with new friends.</h3>
+			</div>
 		</div>
-		<footer>
-			<p>This website made by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.<p>
-		</footer>
+		<div class="bottom-container">
+			<div class="center-body">
+				<p>Have you ever wanted to go a concert or sporting event but are unable to rally enough friends to join you? Forget your lame friends! UGA Nvite provides you with a platform to sign up for events with other sensible people. What makes UGA Nvite different? You don’t have to know anyone. Just have a genuine interest in attending an event of your choice and you’ll join a small group (usually between 4-6) of college students (enough to where it isn’t a date, but that you’ll still be a vital member of the group). What are you waiting for? Get started!</p>
+			</div>
+			<footer>
+				<p>This website made by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.<p>
+			</footer>
+		</div>
 	</body>
 </html>		

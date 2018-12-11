@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from decimal import Decimal
 
 # choice class definition: CharField, and DateTimeField
 # function to display question object as string
@@ -9,6 +10,10 @@ class Event(models.Model):
     date = models.DateField(default=datetime.now)
     location = models.CharField(max_length=500)
     registered_users = models.IntegerField(default=0)
+    venue_name = models.CharField(max_length=500)
+    venue_latitude = models.DecimalField(max_digits=20, decimal_places=3, default=None)
+    venue_longitude = models.DecimalField(max_digits=20, decimal_places=3, default=None)
+    description = models.CharField(max_length=1000,default="")
     def __str__(self):
         return self.event_title
 
@@ -24,3 +29,6 @@ class EventRatings(models.Model):
 class EventGroups(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     count_users = models.IntegerField(default=0)
+
+#class EventRegistered(models.Model):
+    #event = models.ForeignKey(User)
