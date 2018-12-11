@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+		{% load static %}
+                <title>UGA Nvite</title>
+                <link rel="stylesheet" type="text/css" href="{% static '/stylesheet.css' %}">
+        </head>
+        <body>
+		<div class="menu-bar">
+                        <div class="menu-item">
+				<div class="left-container">
+					<div class="left-menu">
+						<a class="menu-link" href="/final/events/">Event List</a>
+					</div>
+				</div>
+			</div>
+                        <div class="menu-item">
+                                <div class="center-logo">
+                                        <p><a class="menu-link" href="/final/events/">UGA Nvite</a></p>
+                                </div>
+                        </div>
+                        <div class="menu-item">
+                                <div class="right-container">
+                                        <div class="right-menu">
+                                                <a class="menu-link" href="/final/accounts/logout/">Logout</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+    		<div class="heading">
+			<h3>{{ event.event_title }}</h3>
+   		</div>
+		<hr class="header-hr">
+		<div class="full-container">
+			<div class="group-container">
+				{% if group_list %}
+				{% for group in group_list %}
+				<h3 style="color: #f22b29; border-bottom: 1px solid black;">Group {{ forloop.counter }}</h3>
+				<ul>
+				{% for user in user_list %}
+				{% if user.group == group %}
+					<li>{{ user.user }}</li>
+				{% endif %}
+				{% endfor %}
+				</ul>
+				<a href="{% url 'events:joinGroup' eventnum=event.id groupnum=group.id %}"><button style="margin-bottom: 30px;">Join Group {{ forloop.counter }}</button></a>
+				{% endfor %}
+				<p>Don't like any groups here? Click below to start a new group.</p>
+				<a href="{% url 'events:newGroup' num=event.id %}"><button style="margin-bottom: 30px;">Start a new Group</button></a>
+				{% else %}
+				<p>No groups yet. Start a new group</p>
+				<a href="{% url 'events:newGroup' num=event.id %}"><button style="margin-bottom: 30px;">Start a new Group</button></a>
+				{% endif %}
+			</div>
+		</div>
+    		<div class="bottom-container">
+			<footer>
+        			<p>This website was written by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.</p>
+    			</footer>
+		</div>
+	</body>
+</html>
+

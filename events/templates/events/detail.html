@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+		{% load static %}
+                <title>UGA Nvite</title>
+                <link rel="stylesheet" type="text/css" href="{% static '/stylesheet.css' %}">
+        </head>
+        <body>
+		<div class="menu-bar">
+                        <div class="menu-item">
+				<div class="left-container">
+					<div class="left-menu">
+						<a class="menu-link" href="/final/events/">Event List</a>
+					</div>
+				</div>
+			</div>
+                        <div class="menu-item">
+                                <div class="center-logo">
+                                        <p><a class="menu-link" href="/final/events/">UGA Nvite</a></p>
+                                </div>
+                        </div>
+                        <div class="menu-item">
+                                <div class="right-container">
+                                        <div class="right-menu">
+                                                <a class="menu-link" href="/final/accounts/logout/">Logout</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+    		<div class="heading">
+			<h3>{{ event.event_title }}</h3>
+   		</div>
+		<hr class="header-hr">
+		<div class="full-container">
+   			<div class="detail-container">
+				<div class="info-container">
+					{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  					{% csrf_token %}
+    					<p>Where: {{ event.venue_name }} in {{ event.location }}<p>
+					<p>When: {{ event.date }}</p>
+					<a href="{% url 'events:groups' event.id %}"><button>Register for this event</button></a>
+				</div>
+				<div id="map"></div>
+				<script>
+					var latitude = {{ event.venue_latitude }};
+        			        var longitude = {{ event.venue_longitude }};
+				</script>
+    				<script type="text/javascript" src="{% static '/map.js' %}"></script>
+    				<script async defer
+        				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuSI7Y-6Ooo1XrXkCFkwYoXwlWx2lMRMg&callback=initMap">
+    				</script>
+			</div>
+			<div class="group-container">
+			</div>
+		</div>
+    		<div class="bottom-container">
+			<footer>
+        			<p>This website was written by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.</p>
+    			</footer>
+		</div>
+	</body>
+</html>

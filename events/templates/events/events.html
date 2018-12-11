@@ -1,28 +1,92 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		{% load static %}
 		<title>UGA Nvite</title>
-		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="{% static '/stylesheet.css' %}">
 	</head>
 	<body>
 		<div class="menu-bar">
-			<div class="center-logo">UGA Nvite</div>
-			<div class="right-menu">Sign Up</div>
-			<div class="right-menu">Login</div>
-		</div>
-		<div class="poll-container">
-    			<h3>Events</h3>
-    			<hr class="header-hr">
-    			{% if latest_event_list %}
+                        <div class="menu-item"></div>
+                        <div class="menu-item">
+                                <div class="center-logo">
+                                        <p><a class="menu-link" href="">UGA Nvite</a></p>
+                                </div>
+                        </div>
+                        <div class="menu-item">
+                                <div class="right-container">
+                                        <div class="right-menu">
+                                                <a class="menu-link" href="/final/accounts/logout">Logout</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+		<div class="event-container">
+    			<div class="heading">
+				<h3>Event List</h3>
+    			</div>
+			<input id="hidden" type="hidden" value="1">
+			<hr class="header-hr">
+			{% if latest_event_list %}
+			<table cellspacing="20">
+				<thead>
+					<tr>
+						<th>Event</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
     			        {% for event in latest_event_list %}
-           				 <p><a class="event-link" href="{% url 'events:detail' event.id %}">{{ event.event_title }}</a></p>
+					<tr>
+						<td class="hover-item"><a class="table-item" href="{% url 'events:detail' event.id %}">{{ event.event_title }}</a></td>
+						<td class="hover-item"><a class="table-item" href="{% url 'events:detail' event.id %}">{{ event.date }}</a></td>
+					</tr>
     			        {% endfor %}
+				</tbody>
+				<script>
+					var httpRequest = new XMLHttpRequest();
+        
+		                        function updateTable() {
+      			                if(httpRequest.readyState === 4){
+                     	                	var tab = document.querySelector("table");
+						var node = document.createElement("tbody");
+						node.innerHTML = (httpRequest.responseText);
+						tab.appendChild(node);
+						var hidden = document.getElementById("hidden");
+						var num = Number(hidden.value);
+						num = num + 1;
+						hidden.value = num;
+					}
+                        	}
+
+                        	function submit() {
+                                	if((window.innerHeight + window.pageYOffset) < document.body.offsetHeight - 2){
+						return;
+					}
+					else if(Number(document.getElementById("hidden").value) > 9){
+						return;
+					}
+					else{
+                                		var numhidden = document.getElementById("hidden").value;
+						console.log(numhidden);
+                                		var str = "/final/events/partiallist/" + numhidden;
+                                		str = encodeURI(str);
+                                		httpRequest.onreadystatechange = updateTable;
+                                		httpRequest.open('GET', str);
+                                		httpRequest.send();
+                        		}
+				}
+
+				window.addEventListener('scroll', submit);
+
+				</script>
+			</table>
     			{% else %}
        				<p>No events are available.</p>
     			{% endif %}
     		</div>
 		<footer>
-			<p>This website made by Francis Mazzolini, Alex Kimbrell for CSCI 4300.<p>
+			<p>This website made by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.<p>
 		</footer>
 	</body>
 </html>		

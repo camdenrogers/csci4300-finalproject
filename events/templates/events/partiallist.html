@@ -1,0 +1,10 @@
+{% if latest_event_list %}
+{% for event in latest_event_list %}
+<tr>
+	<td class="hover-item"><a class="table-item" href="{% url 'events:detail' event.id %}">{{ event.event_title }}</a></td>
+        <td class="hover-item"><a class="table-item" href="{% url 'events:detail' event.id %}">{{ event.date }}</a></td>
+</tr>
+{% endfor %}
+{% else %}
+        <p>No events are available.</p>
+{% endif %}
