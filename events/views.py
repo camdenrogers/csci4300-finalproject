@@ -1,15 +1,25 @@
 import datetime
 
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 from django.utils import timezone
-from .models import Event
+from .models import Event, EventGroups, EventRegistered
+from events.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 import requests
 # Create your views here.
 
 def index(request):
     return render(request, 'events/index.html', {})
+
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    success_url= 'http://172.19.50.172/final/events/'
+    template_name = 'registration/signup.html'
 
 # event list response with last 5 questions
 class IndexView(generic.ListView):
@@ -25,6 +35,34 @@ class DetailView(generic.DetailView):
     template_name = 'events/detail.html'
     def get_queryset(self):
         return Event.objects.filter()
+
+def Groups(request, num):
+    event = Event.objects.filter(id=num)
+    g = EventGroups.objects.filter(event=event[0]).order_by('id')
+    users = EventRegistered.objects.filter(event=event[0])
+    context = {'event': event[0], 'group_list': g, 'user_list': users}
+    return render(request, 'events/groups.html', context)
+
+def NewGroup(request, num):
+    e = Event.objects.filter(id=num)
+    e = e[0]
+    group = EventGroups(event = e)
+    group.save()
+    g = EventGroups.objects.filter(event=e).order_by('id')
+    users = EventRegistered.objects.filter(event=e)
+    context = {'event': e, 'group_list': g, 'user_list': users}
+    return render(request, 'events/groups.html', context)
+
+def JoinGroup(request, eventnum, groupnum):
+    e = Event.objects.filter(id=eventnum)
+    g = EventGroups.objects.filter(id=groupnum)
+    e = e[0]
+    register = EventRegistered(event=e, user=request.user.username, group=g[0])
+    register.save()
+    k = EventGroups.objects.filter(event=e).order_by('id')
+    users = EventRegistered.objects.filter(event=e)
+    context = {'event': e, 'group_list': k, 'user_list': users}
+    return render(request, 'events/groups.html', context) 
 
 def PartialList(request, num):
     template_name = 'events/partiallist.html'

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>UGA Nvite</title>
+                <link rel="stylesheet" type="text/css" href="/final/static/stylesheet.css">
+        </head>
+        <body>
+                <div class="menu-bar">
+                        <div class="menu-item"></div>
+                        <div class="menu-item">
+                                <div class="center-logo">
+                                        <p><a class="menu-link" href="/final/">UGA Nvite</a></p>
+                                </div>
+                        </div>
+                        <div class="menu-item">
+                                <div class="right-container">
+                                        <div class="right-menu">
+                                                <a class="menu-link" href="/final/signup/">Sign Up</a>
+                                        </div>
+                                        <div class="right-menu">
+                                                <a class="menu-link" href="/final/accounts/login/">Login</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="middle-center">
+                        <div class="welcome" style="width: 80%;">
+                        	{% extends './base.html' %}
+				{% block title %}Sign Up{% endblock %}
+
+				{% block content %}
+				  <h2>Create New Account</h2>
+				  <form method="post">
+				    {% csrf_token %}
+				    {{ form.as_p }}
+				    <button type="submit">Create</button>
+				    <br>
+				    <br>
+				    <a href="/final/">Back to Login Page</a>
+				  </form>
+				{% endblock %}
+			</div>
+                </div>
+                <div class="bottom-container">
+                        <div class="center-body">
+                        </div>
+                        <footer>
+                                <p>This website made by Francis Mazzolini, Alex Kimbrell, and Camden Rogers for CSCI 4300.<p>
+                        </footer>
+                </div>
+	</body>
+</html>

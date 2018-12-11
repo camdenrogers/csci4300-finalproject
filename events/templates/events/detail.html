@@ -22,7 +22,7 @@
                         <div class="menu-item">
                                 <div class="right-container">
                                         <div class="right-menu">
-                                                <a class="menu-link" href="">Logout</a>
+                                                <a class="menu-link" href="/final/accounts/logout/">Logout</a>
                                         </div>
                                 </div>
                         </div>
@@ -38,8 +38,7 @@
   					{% csrf_token %}
     					<p>Where: {{ event.venue_name }} in {{ event.location }}<p>
 					<p>When: {{ event.date }}</p>
-					<p>Current number attending: {{ event.registered_users }}</p>
-					<a href="register.html"><button>Register for this event</button></a>
+					<a href="{% url 'events:groups' event.id %}"><button>Register for this event</button></a>
 				</div>
 				<div id="map"></div>
 				<script>
@@ -51,13 +50,7 @@
         				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuSI7Y-6Ooo1XrXkCFkwYoXwlWx2lMRMg&callback=initMap">
     				</script>
 			</div>
-			<h5>Placeholder group</h5>
 			<div class="group-container">
-				<ul>
-					<li>user1</li>
-					<li>user2</li>
-					<li>...</li>
-				</ul>
 			</div>
 		</div>
     		<div class="bottom-container">

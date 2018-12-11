@@ -30,5 +30,7 @@ class EventGroups(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     count_users = models.IntegerField(default=0)
 
-#class EventRegistered(models.Model):
-    #event = models.ForeignKey(User)
+class EventRegistered(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.CharField(max_length=100)
+    group = models.ForeignKey(EventGroups, on_delete=models.CASCADE)
