@@ -225,7 +225,6 @@ th {
   box-shadow: 1px 1px 2px black;
   margin-right: 1%;
   padding: 8px;
-  position: relative;
 }
 
 button {
@@ -238,7 +237,6 @@ button {
   transition: background-color 0.3s;
   border: 0;
   cursor: pointer;
-  position: absolute;
   bottom: 0;
   margin: 10px auto;
 }
@@ -252,9 +250,7 @@ button:hover {
 }
 
 .full-container {
-  display: flex;
   margin: auto;
-  flex-direction: column;
   width: 60%;
   margin-bottom: 25px;
 }
